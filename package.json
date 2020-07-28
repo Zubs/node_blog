@@ -4,8 +4,8 @@
   "description": "just my first windows node project",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+    "start": "node app",
+    "dev": "nodemon app"
   },
   "author": "Zubair Idris Aweda",
   "license": "ISC",
