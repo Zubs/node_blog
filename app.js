@@ -12,14 +12,19 @@ app.listen(3000);
 
 // Respond to /
 app.get('/', (req, res) => {
-	res.sendFile('./views/index.html', { root: __dirname });
+	res.render('index');
 });
 
 // Respond to /
 app.get('/about', (req, res) => {
-	res.sendFile('./views/about.html', { root: __dirname });
+	res.render('about');
+});
+
+// Respond to /blogs/create
+app.get('/blogs/create', (req, res) => {
+	res.render('create');
 });
 
 app.use((req, res) => {
-	res.status(404).sendFile('./views/404.html', { root: __dirname });
+	res.status(404).render('404');
 });
