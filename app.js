@@ -12,19 +12,19 @@ app.listen(3000);
 
 // Respond to /
 app.get('/', (req, res) => {
-	res.render('index');
+	res.render('index', { title: 'Home'});
 });
 
 // Respond to /
 app.get('/about', (req, res) => {
-	res.render('about');
+	res.render('about', { title: 'About'});
 });
 
 // Respond to /blogs/create
 app.get('/blogs/create', (req, res) => {
-	res.render('create');
+	res.render('create', { title: 'Create'});
 });
 
 app.use((req, res) => {
-	res.status(404).render('404');
+	res.status(404).render('404', { title: '404'});
 });
