@@ -12,7 +12,12 @@ app.listen(3000);
 
 // Respond to /
 app.get('/', (req, res) => {
-	res.render('index', { title: 'Home'});
+	const blogs = [
+		{title: 'First Blog', snippet: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'},
+		{title: 'Second Blog', snippet: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'},
+		{title: 'Third Blog', snippet: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'},
+	];
+	res.render('index', { title: 'Home', blogs});
 });
 
 // Respond to /
