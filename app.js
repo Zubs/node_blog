@@ -1,5 +1,8 @@
 // Import express
-const express = require('express')
+const express = require('express');
+
+// Import morgan
+const morgan = require('morgan');
 
 // Initiate the app
 const app = express();
@@ -9,6 +12,18 @@ app.set('view engine', 'ejs');
 
 // Listen to requests
 app.listen(3000);
+
+// Set Up static files
+app.use(express.static('public'));
+
+// Using morgan to log instead
+app.use(morgan('dev'));
+
+// Built a logger middleware
+app.use((req, res, next) => {
+	console.log(`${req.method} request: http://${req.hostname}${req.path}\t${res.statusCode}`);
+	next();
+});
 
 // Respond to /
 app.get('/', (req, res) => {
