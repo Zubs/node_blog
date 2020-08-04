@@ -8,7 +8,7 @@ const Blog = require('./models/blog');
 const app = express();
 
 // Link to mongoDB atlas
-const dbURI = '';
+const dbURI = 'mongodb+srv://young:ethene20@cluster0.hgbre.mongodb.net/node_blog?retryWrites=true&w=majority';
 mongoose.connect(dbURI, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
@@ -63,6 +63,28 @@ app.get('/blogs', (req, res) => {
 app.get('/blogs/create', (req, res) => {
 	res.render('create', { title: 'Create'});
 });
+
+app.use(express.urlencoded());
+app.use(express.json());
+
+app.post('/blogs/new', (req, res) => {
+	const blog = new Blog({
+		title: req.body.blog.title,
+		snippet: req.body.blog.snippet,
+		body: req.body.blog.body
+	});
+	blog.save()
+		.then((result) => {
+			Blog.find()
+				.sort({createdAt: -1})
+				.then((result) => {
+					res.render('blogs', {title: 'Blogs', blogs: result})
+				})
+				.catch((err) => console.log(err))
+		})
+		.catch((err) => console.log(err));
+	//console.log(req.body.blog.body);
+})
 
 app.use((req, res) => {
 	res.status(404).render('404', { title: '404'});
