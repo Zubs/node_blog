@@ -1,0 +1,21 @@
+<%- include('./partials/header') %>
+    <div class="container pt-5">
+      <h1 class="pt-5"><%= blog.title %><span style="float: right;"><a data-id="<%= blog._id%>" class="btn btn-danger">Delete Post</a></span></h1>
+      <p><%= blog.body %></p>
+    </div>
+
+    <script>
+      const deleteKey = document.querySelector('a.btn-danger');
+
+      deleteKey.addEventListener('click', (e) => {
+        const endpoint = `/blogs/${this.dataset.id}`;
+
+        fetch(endpoint, {
+          method: 'DELETE'
+        })
+          .then((res) => res.json())
+          .then((data) => window.location.href = data.redirect)
+          .catch((err) => console.log(err))
+      })
+    </script>
+<%- include('./partials/footer') %>

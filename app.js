@@ -64,26 +64,36 @@ app.get('/blogs/create', (req, res) => {
 	res.render('create', { title: 'Create'});
 });
 
-app.use(express.urlencoded());
-app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+// app.use(express.json());
 
-app.post('/blogs/new', (req, res) => {
-	const blog = new Blog({
-		title: req.body.blog.title,
-		snippet: req.body.blog.snippet,
-		body: req.body.blog.body
-	});
+app.post('/blogs', (req, res) => {
+	const blog = new Blog(req.body);
 	blog.save()
 		.then((result) => {
-			Blog.find()
-				.sort({createdAt: -1})
-				.then((result) => {
-					res.render('blogs', {title: 'Blogs', blogs: result})
-				})
-				.catch((err) => console.log(err))
+			res.redirect('/blogs');
 		})
 		.catch((err) => console.log(err));
-	//console.log(req.body.blog.body);
+});
+
+app.get('/blogs/:id', (req, res) => {
+	const id = req.params.id;
+	Blog.findById(id)
+		.then((result) => {
+			res.render('blog-single', { blog: result, title: 'Blog Details' })
+		})
+		.catch((err) => console.log(err))
+});
+
+app.delete('/blogs/:id', (req, res) => {
+	const id = req.params.id;
+	Blog.findByIdAndDelete(id)
+		.then(result => {
+			res.json({
+				redirect: '/blogs'
+			})
+		})
+		.catch((err) => console.log(err))
 })
 
 app.use((req, res) => {
