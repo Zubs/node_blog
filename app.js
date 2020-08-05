@@ -36,12 +36,7 @@ app.use((req, res, next) => {
 
 // Respond to /
 app.get('/', (req, res) => {
-	const blogs = [
-		{title: 'First Blog', snippet: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'},
-		{title: 'Second Blog', snippet: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'},
-		{title: 'Third Blog', snippet: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'},
-	];
-	res.render('index', { title: 'Home', blogs});
+	res.redirect('/blogs');
 });
 
 // Respond to /about
