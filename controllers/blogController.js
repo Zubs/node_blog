@@ -33,7 +33,7 @@ const show = (req, res) => {
 		.then((result) => {
 			res.render('blogs/blog-single', { blog: result, title: 'Blog Details' })
 		})
-		.catch((err) => console.log(err))
+		.catch((err) => res.status(404).render('404', {title: 'Blog Not Found'}))
 };
 
 const destroy = (req, res) => {
