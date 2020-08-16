@@ -2,7 +2,7 @@
   "name": "net_ninja_node",
   "version": "1.0.0",
   "description": "just my first windows node project",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
     "start": "node app",
     "dev": "nodemon app"
