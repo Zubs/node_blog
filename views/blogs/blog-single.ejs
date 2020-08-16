@@ -1,4 +1,4 @@
-<%- include('./partials/header') %>
+<%- include('../partials/header') %>
     <div class="container pt-5">
       <h1 class="pt-5"><%= blog.title %><span style="float: right;"><a data-id="<%= blog._id%>" class="btn btn-danger">Delete Post</a></span></h1>
       <p><%= blog.body %></p>
@@ -18,4 +18,4 @@
           .catch((err) => console.log(err))
       })
     </script>
-<%- include('./partials/footer') %>
+<%- include('../partials/footer') %>

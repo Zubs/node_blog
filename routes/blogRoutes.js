@@ -8,14 +8,9 @@ router.use(express.urlencoded({ extended: true }));
 
 // Respond to /blogs
 router.get('/', blogController.index);
-
-// Respond to /blogs/create
 router.get('/create', blogController.create);
-
-router.post('/', blogController.save);
-
+router.post('/', blogController.store);
 router.get('/:id', blogController.show);
-
-router.delete('/:id', blogController.delete);
+router.delete('/:id', blogController.destroy);
 
 module.exports = router;

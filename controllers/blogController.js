@@ -9,13 +9,13 @@ const index = (req, res) => {
 	Blog.find()
 		.sort({createdAt: -1})
 		.then((result) => {
-			res.render('blogs', {title: 'Blogs', blogs: result})
+			res.render('blogs/blogs', {title: 'Blogs', blogs: result})
 		})
 		.catch((err) => console.log(err))
 };
 
 const create = (req, res) => {
-	res.render('create', { title: 'Create'});
+	res.render('blogs/create', { title: 'Create'});
 };
 
 const store = (req, res) => {
@@ -31,12 +31,12 @@ const show = (req, res) => {
 	const id = req.params.id;
 	Blog.findById(id)
 		.then((result) => {
-			res.render('blog-single', { blog: result, title: 'Blog Details' })
+			res.render('blogs/blog-single', { blog: result, title: 'Blog Details' })
 		})
 		.catch((err) => console.log(err))
 };
 
-const delete = (req, res) => {
+const destroy = (req, res) => {
 	const id = req.params.id;
 	Blog.findByIdAndDelete(id)
 		.then(result => {
@@ -52,5 +52,5 @@ module.exports = {
 	create,
 	store,
 	show,
-	delete
+	destroy
 };
