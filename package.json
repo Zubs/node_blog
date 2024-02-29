@@ -1,5 +1,5 @@
 {
-  "name": "net_ninja_node",
+  "name": "node_blog",
   "version": "1.0.0",
   "description": "just my first windows node project",
   "main": "app.js",
@@ -7,9 +7,10 @@
     "start": "node app",
     "dev": "nodemon app"
   },
-  "author": "Zubair Idris Aweda",
+  "author": "Zubs <zubairidrisaweda@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.4.5",
     "ejs": "^3.1.7",
     "express": "^4.17.3",
     "mongoose": "^5.13.20",
